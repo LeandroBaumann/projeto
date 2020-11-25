@@ -1,5 +1,6 @@
 package br.itau.agenda.dao;
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 import org.springframework.data.repository.CrudRepository;
 import br.itau.agenda.model.Agendamento;
@@ -14,7 +15,7 @@ public interface AgendamentoDAO extends CrudRepository<Agendamento, Integer> {
     //public Agendamento findByIdAgencia(String Agencia);
     public Agendamento findByDataAgendamento(LocalDate localDate);
     //public Agendamento findByData(String dataIni, String dataFim);
-    public Agendamento findByHoraAgendamento(String horaAgendamento);
+    public Agendamento findByHoraAgendamento(LocalTime localTime);
     //public Agendamento findByData(String horaIni, String horaFim);
       
 }

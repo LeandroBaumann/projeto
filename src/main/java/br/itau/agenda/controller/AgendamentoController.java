@@ -87,5 +87,17 @@ public class AgendamentoController {
         return ResponseEntity.notFound().build();
     }
 
+    
+    //public Agendamento findByHora(String hora);
+    @PostMapping("/hora")
+    public ResponseEntity<AgendamentoDTO> findByHoraAgendamento(@RequestBody Agendamento agendamento){
+        Agendamento userFinded = dao.findByHoraAgendamento(agendamento.getHoraAgendamento());
+        if(userFinded != null){
+            AgendamentoDTO agendamentoDto = new AgendamentoDTO(userFinded);
+            return ResponseEntity.ok(agendamentoDto);
+        }
+        return ResponseEntity.notFound().build();
+    }
+
     //public Agendamento findByAgencia(String agencia);
 }
