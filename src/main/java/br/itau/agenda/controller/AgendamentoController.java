@@ -43,18 +43,8 @@ public class AgendamentoController {
         return lista;
     }
 
-    // public Agendamento findByEmail(String email);
-    @PostMapping("/email")
-    public ResponseEntity<AgendamentoDTO> buscarPorEmail(@RequestBody Agendamento agendamento){
-        Agendamento userFinded = dao.findByEmailCli(agendamento.getEmailCli());
-        if(userFinded != null){
-            AgendamentoDTO agendamentoDto = new AgendamentoDTO(userFinded);
-            return ResponseEntity.ok(agendamentoDto);
-        }
-        return ResponseEntity.notFound().build();
-    }
 
-    //public Agendamento findByNome(String nome);
+    //public Agendamento findByNome(String nome); - Cliente
     @PostMapping("/nome")
     public ResponseEntity<AgendamentoDTO> buscarPorNome(@RequestBody Agendamento agendamento){
         Agendamento userFinded = dao.findByNomeCli(agendamento.getNomeCli());
@@ -64,19 +54,8 @@ public class AgendamentoController {
         }
         return ResponseEntity.notFound().build();
     }
-
-    //public Agendamento findByTelefone(String telefone);
-    @PostMapping("/celular")
-    public ResponseEntity<AgendamentoDTO> buscarPorCelular(@RequestBody Agendamento agendamento){
-        Agendamento userFinded = dao.findByCelularCli(agendamento.getCelularCli());
-        if(userFinded != null){
-            AgendamentoDTO agendamentoDto = new AgendamentoDTO(userFinded);
-            return ResponseEntity.ok(agendamentoDto);
-        }
-        return ResponseEntity.notFound().build();
-    }
     
-    //public Agendamento findByData(String data);
+    //public Agendamento findByData(String data); - Data
     @PostMapping("/data")
     public ResponseEntity<AgendamentoDTO> findByDataAgendamento(@RequestBody Agendamento agendamento){
         Agendamento userFinded = dao.findByDataAgendamento(agendamento.getDataAgendamento());
@@ -86,18 +65,60 @@ public class AgendamentoController {
         }
         return ResponseEntity.notFound().build();
     }
-
-    
-    //public Agendamento findByHora(String hora);
-    @PostMapping("/hora")
-    public ResponseEntity<AgendamentoDTO> findByHoraAgendamento(@RequestBody Agendamento agendamento){
-        Agendamento userFinded = dao.findByHoraAgendamento(agendamento.getHoraAgendamento());
-        if(userFinded != null){
-            AgendamentoDTO agendamentoDto = new AgendamentoDTO(userFinded);
-            return ResponseEntity.ok(agendamentoDto);
+ 
+    //public Agendamento findByAgencia(String agencia); - Agencia
+    @PostMapping("/agencia")
+    public ResponseEntity<List<Agendamento>> buscarPorAgencia(@RequestBody Agendamento agendamento){
+        List<Agendamento> lista = dao.findByAgencia(agendamento.getAgencia());
+        if(lista != null){
+            //AgendamentoDTO agendamentoDto = new AgendamentoDTO(userFinded);
+            return ResponseEntity.ok(lista);
         }
         return ResponseEntity.notFound().build();
     }
 
-    //public Agendamento findByAgencia(String agencia);
+    // Agencia Data
+    @PostMapping("/agenciadata")
+    public ResponseEntity<List<Agendamento>> findByAgenciaAndDataAgendamento(@RequestBody Agendamento agendamento){
+        List<Agendamento> lista = dao.findByAgenciaAndDataAgendamento(agendamento.getAgencia(), agendamento.getDataAgendamento());
+        if(lista != null){
+            //AgendamentoDTO agendamentoDto = new AgendamentoDTO(userFinded);
+            return ResponseEntity.ok(lista);
+        }
+        return ResponseEntity.notFound().build();
+    }
+    
+    //Agencia Cliente
+    @PostMapping("/agencianome")
+    public ResponseEntity<List<Agendamento>> findByAgenciaAndNomeCli(@RequestBody Agendamento agendamento){
+        List<Agendamento> lista = dao.findByAgenciaAndNomeCli(agendamento.getAgencia(), agendamento.getNomeCli());
+        if(lista != null){
+            //AgendamentoDTO agendamentoDto = new AgendamentoDTO(userFinded);
+            return ResponseEntity.ok(lista);
+        }
+        return ResponseEntity.notFound().build();
+    }
+
+
+    //Cliente Data
+    @PostMapping("/nomedata")
+    public ResponseEntity<List<Agendamento>> findByNomeCliAndDataAgendamento(@RequestBody Agendamento agendamento){
+        List<Agendamento> lista = dao.findByNomeCliAndDataAgendamento(agendamento.getNomeCli(), agendamento.getDataAgendamento());
+        if(lista != null){
+            //AgendamentoDTO agendamentoDto = new AgendamentoDTO(userFinded);
+            return ResponseEntity.ok(lista);
+        }
+        return ResponseEntity.notFound().build();
+    }
+
+    //Cliente Agencia Data
+    @PostMapping("/nomedataagencia")
+    public ResponseEntity<List<Agendamento>> findByNomeCliAndDataAgendamentoAndAgencia(@RequestBody Agendamento agendamento){
+        List<Agendamento> lista = dao.findByNomeCliAndDataAgendamentoAndAgencia(agendamento.getNomeCli(), agendamento.getDataAgendamento(), agendamento.getAgencia());
+        if(lista != null){
+            //AgendamentoDTO agendamentoDto = new AgendamentoDTO(userFinded);
+            return ResponseEntity.ok(lista);
+        }
+        return ResponseEntity.notFound().build();
+    }
 }
