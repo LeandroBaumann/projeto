@@ -11,7 +11,7 @@ public interface AgendamentoDAO extends CrudRepository<Agendamento, Integer> {
     public Agendamento findByNomeCli(String nomeCli);
     public Agendamento findByEmailCli(String emailCli);
     public Agendamento findByCelularCli(String celularCli);
-    public Agendamento findByIdAgencia(String Agencia);
+    //public Agendamento findByIdAgencia(String Agencia);
     public Agendamento findByDataAgendamento(LocalDate localDate);
     //public Agendamento findByData(String dataIni, String dataFim);
     public Agendamento findByHoraAgendamento(String horaAgendamento);

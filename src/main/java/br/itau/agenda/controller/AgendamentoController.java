@@ -87,8 +87,5 @@ public class AgendamentoController {
         return ResponseEntity.notFound().build();
     }
 
-
-
-
     //public Agendamento findByAgencia(String agencia);
 }
